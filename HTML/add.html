@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Similar styles to keep a consistent design */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .smartphone {
+            width: 375px;
+            height: 667px;
+            border: 16px solid #333;
+            border-radius: 36px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+            position: relative;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .add-container {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #388e3c;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+<body>
+    <div class="smartphone">
+        <div class="screen">
+            <header>
+                <h1>Add Book</h1>
+            </header>
+            <div class="add-container">
+                <div class="book-title" id="book-title"></div>
+                
+                <label for="book-quantity">Quantity:</label>
+                <select id="book-quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                
+                <button id="add-book">Add Book</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve the title from the query parameters
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        if (title) {
+            document.getElementById('book-title').textContent = title;
+        }
+
+        document.getElementById('add-book').addEventListener('click', () => {
+            const quantity = document.getElementById('book-quantity').value;
+            if (title) {
+                alert(`Added ${quantity} copy/copies of "${title}"!`);
+                window.history.back(); // Return to the previous page
+            } else {
+                alert("Book title not specified.");
+            }
+        });
+    </script>
+</body>
+</html>

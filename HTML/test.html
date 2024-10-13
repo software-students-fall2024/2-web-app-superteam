@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Existing styles remain the same */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background-color: #e64a19;
+        }
+        
+        .smartphone {
+            width: 375px;
+            height: 667px;
+            border: 16px solid #333;
+            border-radius: 36px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+            position: relative;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .search-container {
+            display: flex;
+            padding: 10px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .calendar-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            background-color: #03a9f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .calendar-button:hover {
+            background-color: #0288d1;
+        }
+        
+        .add {
+            background-color: #4caf50;
+        }
+        
+        .add:hover {
+            background-color: #388e3c;
+        }
+
+        .edit {
+            background-color: #03a9f4;
+        }
+
+        .edit:hover {
+            background-color: #0288d1;
+        }
+
+        .delete {
+            background-color: #ff5722;
+        }
+
+        .delete:hover {
+            background-color: #e64a19;
+        }
+
+        .results {
+            padding: 10px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .results ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .results li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .results li:last-child {
+            border-bottom: none;
+        }
+        
+        .book-info {
+            flex: 1;
+        }
+        
+        .buttons {
+            display: flex;
+        }
+
+        .buttons button {
+            margin-left: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+</head>
+<body>
+    <div class="smartphone">
+        <div class="screen">
+            <header>
+                <button class="calendar-button" onclick="window.location.href='calendar.html'">Calendar</button>
+                <h1>Search Books</h1>
+                <button class="logout-button" onclick="window.location.href='login.html'">Logout</button>
+            </header>
+            <div class="search-container">
+                <input type="text" placeholder="Search books..." />
+                <button>Search</button>
+            </div>
+            <div class="results">
+                <ul>
+                    <li>
+                        <span class="book-info">The Great Gatsby by F. Scott Fitzgerald</span>
+                        <div class="buttons">
+                            <button class="add" onclick="addBook('The Great Gatsby')">Add</button>
+                            <button class="edit" onclick="editBook('The Great Gatsby', 'F. Scott Fitzgerald')">Edit</button>
+                            <button class="delete" onclick="deleteBook('The Great Gatsby')">Delete</button>
+                        </div>
+                    </li>
+                    <script>
+                        function addBook(title) {
+                            window.location.href = `add.html?title=${encodeURIComponent(title)}`;
+                        }
+
+                        function deleteBook(title) {
+                            window.location.href = `delete.html?title=${encodeURIComponent(title)}`;
+                        }
+                    
+                        function editBook(title, author) {
+                            window.location.href = `edit.html?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}`;
+                        }
+                    </script>
+                    <!-- Additional book entries here with similar button structure -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function editBook(title, author) {
+            window.location.href = `edit.html?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}`;
+        }
+    </script>
+</body>
+</html>
