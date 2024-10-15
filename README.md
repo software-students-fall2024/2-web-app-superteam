@@ -58,4 +58,8 @@ WARNING: This is a development server. Do not use it in a production deployment.
 
 ## Task boards
 
-https://github.com/software-students-fall2024/2-web-app-superteam/projects?query=is%3Aopen
+Sprint 1:
+https://github.com/orgs/software-students-fall2024/projects/8/views/1
+
+Sprint 2:
+https://github.com/orgs/software-students-fall2024/projects/67
