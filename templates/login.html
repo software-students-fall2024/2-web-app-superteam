@@ -19,7 +19,13 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             background-color: #fff;
             position: relative;
-            padding: 20px;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         header {
@@ -72,21 +78,23 @@
 </head>
 <body>
     <div class="smartphone">
-        <header>
-            <h1>Login</h1>
-        </header>
-        <form method="POST" action="{{ url_for('login') }}">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" placeholder="Enter your username" />
+        <div class="screen">
+            <header>
+                <h1>Login</h1>
+            </header>
+            <form method="POST" action="{{ url_for('login') }}">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter your username" />
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="Enter your password" />
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" />
 
-            <button type="submit">Login</button>
-            {% if error %}
-            <div class="error-message">{{ error }}</div>
-            {% endif %}
-        </form>
+                <button type="submit">Login</button>
+                {% if error %}
+                <div class="error-message">{{ error }}</div>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </body>
 </html>

@@ -37,7 +37,7 @@
             text-align: center;
         }
         
-        .delete-container {
+        .container {
             padding: 20px;
         }
         
@@ -78,18 +78,27 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
 </head>
 <body>
-    <h1>Edit Book</h1>
-    <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="{{ title }}" required><br><br>
+    <div class="smartphone">
+        <div class="screen">
+            <header>
+                <h1>Edit Book</h1>
+            </header>
+            <div class="container">
+                <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="{{ title }}" required><br><br>
 
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" value="{{ author }}" required><br><br>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="{{ author }}" required><br><br>
 
-        <button type="submit">Save Changes</button>
-    </form>
-    <a href="{{ url_for('test') }}">Cancel</a>
+                    <button type="submit">Save Changes</button>
+                </form>
+                <a href="{{ url_for('test') }}">Cancel</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

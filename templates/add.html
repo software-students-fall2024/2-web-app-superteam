@@ -88,7 +88,7 @@
             <div class="add-container">
                 <form method="POST" action="{{ url_for('add' , title=title)}}">
                     <!-- Display book title -->
-                    <input type="text" id="title" name="title" value="{{ title }}" readonly required><br><br>
+                    <input type="label" id="title" name="title" value="{{ title }}" readonly required><br><br>
                     <!-- Quantity selection -->
                     <label for="book-quantity">Quantity:</label>
                     <select name="book-quantity" id="book-quantity">
@@ -102,6 +102,7 @@
                     <!-- Submit button -->
                     <button type="submit">Add Book</button>
                 </form>
+                <a href="{{ url_for('test') }}">Cancel</a>
             </div>
         </div>
     </div>
