@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>New Book</title>
     <style>
+        /* Similar styles to maintain a consistent look */
         body {
             display: flex;
             justify-content: center;
@@ -10,7 +12,7 @@
             margin: 0;
             background-color: #f0f0f0;
         }
-
+        
         .smartphone {
             width: 375px;
             height: 667px;
@@ -20,80 +22,87 @@
             background-color: #fff;
             position: relative;
         }
-
+        
         .screen {
             width: 100%;
             height: 100%;
             border-radius: 20px;
             overflow: hidden;
         }
-
+        
         header {
             background-color: #6200ea;
             color: white;
+            padding: 10px;
             text-align: center;
-            padding: 10px 0;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
         label {
             display: block;
             margin-top: 10px;
+            font-size: 14px;
         }
-
-        input[type="text"],
-        input[type="password"] {
+        
+        select {
             width: calc(100% - 20px);
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
+        
         button {
             margin-top: 20px;
             padding: 10px;
             width: 100%;
-            background-color: #4caf50;
+            background-color: #ff5722;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-
+        
         button:hover {
-            background-color: #388e3c;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            text-align: center;
+            background-color: #e64a19;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
 </head>
 <body>
     <div class="smartphone">
         <div class="screen">
             <header>
-                <h1>Login</h1>
+                <h1>New Book</h1>
             </header>
-            <form method="POST" action="{{ url_for('login') }}">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" placeholder="Enter your username" />
+            <div class="container">
+                <form method="POST" action="{{ url_for('new') }}">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="" required><br><br>
 
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password" />
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="" required><br><br>
 
-                <button type="submit">Login</button>
-                {% if error %}
-                <div class="error-message">{{ error }}</div>
-                {% endif %}
-            </form>
+                    <label for="author">Quantity:</label>
+                    <input type="text" id="quantity" name="quantity" value="" required><br><br>
+
+                    <label for="author">Due Date:</label>
+                    <input type="date" id="due_date" name="due_date" value="" required><br><br>
+
+                    <button type="submit">Save Changes</button>
+                </form>
+            <a href="{{ url_for('test') }}">Cancel</a>
+        </div>
         </div>
     </div>
 </body>

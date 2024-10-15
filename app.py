@@ -10,6 +10,8 @@ app.secret_key = os.getenv('SECRET_KEY')
 
 # Set up MongoDB connection
 mongo_uri = os.getenv('MONGO_URI')
+print(mongo_uri)
+
 client = MongoClient(mongo_uri)
 db = client['library'] 
 books_collection = db['books']
@@ -43,6 +45,7 @@ def test():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
+    title = request.args.get('title')
     if request.method == 'POST':
         title = request.args.get('title')
         quantity = int(request.form.get('book-quantity'))
@@ -50,10 +53,11 @@ def add():
             books_collection.update_one({'title': title}, {'$inc': {'quantity': quantity}}, upsert=True)
             flash(f'Added {quantity} copy/copies of "{title}".', 'success')
             return redirect(url_for('test'))
-    return render_template('add.html')
+    return render_template('add.html', title=title)
 
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
+    title = request.args.get('title')
     if request.method == 'POST':
         title = request.args.get('title')
         quantity = int(request.form.get('book-quantity'))
@@ -62,7 +66,7 @@ def delete():
             books_collection.delete_one({'title': title, 'quantity': {'$lte': 0}})
             flash(f'Deleted {quantity} copy/copies of "{title}".', 'info')
             return redirect(url_for('test'))
-    return render_template('delete.html')
+    return render_template('delete.html', title=title)
 
 @app.route('/calendar')
 def calendar():
@@ -89,6 +93,24 @@ def edit():
         return redirect(url_for('test'))
 
     return render_template('edit.html', title=title, author=author)
+
+@app.route('/new', methods=['GET', 'POST'])
+def new():
+    if request.method == 'POST':
+        # Assuming the edit form has fields for title and author to update
+        title = request.form.get('title')
+        author = request.form.get('author')
+        quantity = request.form.get('quantity')
+        due_date = request.form.get('due_date')
+        book = {
+            'title': title,
+            'author': author,
+            'quantity': int(quantity),  
+            'due_date': due_date
+        }
+        books_collection.insert_one(book)
+
+    return render_template('new.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

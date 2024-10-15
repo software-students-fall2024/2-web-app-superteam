@@ -86,8 +86,8 @@
                 <h1>Delete Book</h1>
             </header>
             <div class="delete-container">
-                <form method="POST" action="{{ url_for('delete') }}">
-                    <div class="book-title" id="book-title">{{ request.args.get('title', 'Book title not specified.') }}</div>
+                <form method="POST" action="{{ url_for('delete', title=title) }}">
+                    <input type="text" id="title" name="title" value="{{ title }}" readonly required><br><br>
                     
                     <label for="book-quantity">Quantity:</label>
                     <select name="book-quantity" id="book-quantity">
@@ -100,6 +100,7 @@
                     
                     <button type="submit">Delete Book</button>
                 </form>
+                <a href="{{ url_for('test') }}">Cancel</a>
             </div>
         </div>
     </div>

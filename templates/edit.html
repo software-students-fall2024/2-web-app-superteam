@@ -2,18 +2,103 @@
 <html lang="en">
 <head>
     <title>Edit Book</title>
+    <style>
+        /* Similar styles to maintain a consistent look */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        .smartphone {
+            width: 375px;
+            height: 667px;
+            border: 16px solid #333;
+            border-radius: 36px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+            position: relative;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
 </head>
 <body>
-    <h1>Edit Book</h1>
-    <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="{{ title }}" required><br><br>
+    <div class="smartphone">
+        <div class="screen">
+            <header>
+                <h1>Edit Book</h1>
+            </header>
+            <div class="container">
+                <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="{{ title }}" required><br><br>
 
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" value="{{ author }}" required><br><br>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="{{ author }}" required><br><br>
 
-        <button type="submit">Save Changes</button>
-    </form>
-    <a href="{{ url_for('test') }}">Cancel</a>
+                    <button type="submit">Save Changes</button>
+                </form>
+                <a href="{{ url_for('test') }}">Cancel</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
