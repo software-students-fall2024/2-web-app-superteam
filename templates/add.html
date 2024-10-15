@@ -86,10 +86,9 @@
                 <h1>Add Book</h1>
             </header>
             <div class="add-container">
-                <form method="POST" action="{{ url_for('add') }}">
+                <form method="POST" action="{{ url_for('add' , title=title)}}">
                     <!-- Display book title -->
-                    <div class="book-title" id="book-title">{{ request.args.get('title', 'Book title not specified.') }}</div>
-                    
+                    <input type="text" id="title" name="title" value="{{ title }}" readonly required><br><br>
                     <!-- Quantity selection -->
                     <label for="book-quantity">Quantity:</label>
                     <select name="book-quantity" id="book-quantity">
