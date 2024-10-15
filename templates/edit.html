@@ -3,7 +3,7 @@
 <head>
     <title>Edit Book</title>
     <style>
-        /* Similar styles to maintain a consistent look */
+        /* Maintain consistent styles with the original CSS */
         body {
             display: flex;
             justify-content: center;
@@ -36,15 +36,9 @@
             padding: 10px;
             text-align: center;
         }
-        
-        .container {
+
+        form {
             padding: 20px;
-        }
-        
-        .book-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
         }
 
         label {
@@ -52,20 +46,20 @@
             margin-top: 10px;
             font-size: 14px;
         }
-        
-        select {
+
+        input[type="text"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        
+
         button {
             margin-top: 20px;
             padding: 10px;
             width: 100%;
-            background-color: #ff5722;
+            background-color: #4caf50;
             color: white;
             border: none;
             border-radius: 5px;
@@ -73,12 +67,19 @@
         }
         
         button:hover {
-            background-color: #e64a19;
+            background-color: #388e3c;
+        }
+
+        .cancel {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #6200ea;
+            text-decoration: none;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book</title>
 </head>
 <body>
     <div class="smartphone">
@@ -86,18 +87,16 @@
             <header>
                 <h1>Edit Book</h1>
             </header>
-            <div class="container">
-                <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" value="{{ title }}" required><br><br>
+            <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="{{ title }}" required>
 
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" value="{{ author }}" required><br><br>
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" value="{{ author }}" required>
 
-                    <button type="submit">Save Changes</button>
-                </form>
-                <a href="{{ url_for('test') }}">Cancel</a>
-            </div>
+                <button type="submit">Save Changes</button>
+                <a class="cancel" href="{{ url_for('test') }}">Cancel</a>
+            </form>
         </div>
     </div>
 </body>
