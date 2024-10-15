@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lend Book</title>
+</head>
+<body>
+    <h1>Lend Out {{ title }}</h1>
+    {% if available_count > 0 %}
+        <form method="POST" action="{{ url_for('lend', title=title) }}">
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
+            <button type="submit">Lend Out</button>
+        </form>
+    {% else %}
+        <p>No available copies to lend out.</p>
+    {% endif %}
+    <button onclick="window.location.href='{{ url_for('test') }}'">Back to Books</button>
+</body>
+</html>

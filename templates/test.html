@@ -173,9 +173,9 @@
                     <li>
                         <span class="book-info">{{ book['title'] }} by {{ book.get('author', 'Unknown') }}</span>
                         <div class="buttons">
-                            <button class="add" onclick="window.location.href='{{ url_for('add', title=book['title']) }}'">Add</button>
+                            <button class="quantity" onclick="window.location.href='{{ url_for('quantity', title=book['title']) }}'">Update Quantity</button>
+                            <button class="lend" onclick="window.location.href='{{ url_for('lend', title=book['title']) }}'">Lend Out</button>
                             <button class="edit" onclick="window.location.href='{{ url_for('edit', title=book['title'], author=book.get('author', '')) }}'">Edit</button>
-                            <button class="delete" onclick="window.location.href='{{ url_for('delete', title=book['title']) }}'">Delete</button>
                         </div>
                     </li>
                     {% endfor %}

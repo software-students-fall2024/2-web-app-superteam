@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         body {
@@ -94,6 +95,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
 </head>
+
 <body>
     <div class="smartphone">
         <div class="screen">
@@ -105,12 +107,20 @@
             <div class="calendar-container">
                 {% for book in books %}
                 <div class="calendar-item">
-                    <span class="book-title">{{ book['title'] }}</span> 
-                    <span class="due-date">- Due: {{ book['due_date'] }}</span>
+                    <span class="book-title">{{ book['title'] }}</span>
+                    <ul>
+                        {% for due_date in book['due_dates'] %}
+                        {% if due_date %}
+                        <li><span class="due-date">Due: {{ due_date }}</span></li>
+                        {% endif %}
+                        {% endfor %}
+                        <li><span class="due-date">{{ book['available_count'] }} available</span></li>
+                    </ul>
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 </body>
+
 </html>
