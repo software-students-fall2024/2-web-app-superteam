@@ -16,25 +16,21 @@ Our vision is to create a user-friendly library catalogue app that empowers user
 
 ## User Requirements
 
-"As a person who checks out books often, I want an easy way to reserve a book for checkout so that I can get my book more quickly”
+"As a librarian who manages inventory, I want to be able to add new books to the database so that book quantities remain accurate."
 
-“As a person who enjoys browsing the library I want an easy way to find out where books I enjoy are so that I can browse more efficiently” 
+"As a librarian who manages inventory, I want to be able to delete books from the database so that book quantities remain accurate."
 
-“As a person who has trouble locating books, I want an easy way to find the location of books so that I can expedite my library visit.”
+“As a librarian, I want an easy way to reliably see if a book is in the library so I can help consumers in their searches”
 
-“As a person who often goes to the library in search of a book, only to find that the book is already checked out, I want an easy way to reliably see if a book is in the library so that I waste less time on unnecessary library trips”
+"As a librarian, I want to be be able to sign in and out so that my experience is personalized for me."
 
-“As a person who often forgets to return books, I want an easy way to keep track of my book due dates so that I don’t rack up late fees”
+"As a librarian who manages inventory, I want to be able to update book titles so that book searches remain accurate."
 
-"As someone with difficulty with reading small screens, I want to search for books by image so that I can quickly find the books I'm looking for."
+"As a librarian who manages inventory, I want to be able to update the authors of a book so that searches remain accurate."
 
-"As someone who checks out a lot of books, I want to view a list of all the books I’ve currently checked out so that I can keep track of what I need to return and their due dates."
+“As a librarian who needs to see returns, I want an easy way to keep track of book due dates so that I can appropriately assist consumers”
 
-"As someone who is very selective with reading material, I want to be able to be able to filter the library's catalog so that I can always find a book for a specific task."
-
-"As an avid reader, I want to view how long I've checked out my book for so that I can track my reading progress."
-
-"As someone who visits the library often, I want to be be able to sign in and out so that my experience is personalized for me."
+"As a librarian who manages inventory, I want to view a calendar in the app for so that I can track due dates visually."
 
 ## Steps necessary to run the software
 
@@ -59,7 +55,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 ## Task boards
 
 Sprint 1:
-https://github.com/orgs/software-students-fall2024/projects/8/views/1
+https://github.com/orgs/software-students-fall2024/projects/8
 
 Sprint 2:
-https://github.com/orgs/software-students-fall2024/projects/67
+https://github.com/orgs/software-students-fall2024/projects/81
