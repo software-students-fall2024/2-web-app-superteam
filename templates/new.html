@@ -13,12 +13,18 @@
             font-family: Arial, sans-serif;
         }
 
-        .container {
-            width: 90%;
-            max-width: 500px;
-            background-color: #fff;
-            border-radius: 10px;
+        .smartphone {
+            width: 400px;
+            height: 667px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+            position: relative;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
             overflow: hidden;
         }
 
@@ -74,7 +80,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
+    <div class="smartphone">
+        <div class="screen">
         <header>
             <h1>New Book</h1>
         </header>
@@ -91,6 +98,7 @@
             <button type="submit">Save Changes</button>
             <a class="cancel" href="{{ url_for('test') }}">Cancel</a>
         </form>
+    </div>
     </div>
 </body>
 </html>
