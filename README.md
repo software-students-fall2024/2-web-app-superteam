@@ -50,7 +50,7 @@ peterdangelo@Peters-MBP 2-web-app-superteam % flask run
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
  * Running on http://127.0.0.1:5000
 
- Go to the given URL, and use "user" and the username and "password" as the password.
+ (Note: optimized for iPhone SE)
 
 ## Task boards
 
