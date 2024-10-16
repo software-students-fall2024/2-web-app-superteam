@@ -14,10 +14,8 @@
         }
         
         .smartphone {
-            width: 375px;
+            width: 400px;
             height: 667px;
-            border: 16px solid #333;
-            border-radius: 36px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             background-color: #fff;
             position: relative;
@@ -47,7 +45,7 @@
             font-size: 14px;
         }
 
-        input[type="text"], input[type="date"] {
+        input[type="text"], input[type="number"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin-top: 5px;
@@ -95,10 +93,7 @@
                 <input type="text" id="author" name="author" value="" required>
 
                 <label for="quantity">Quantity:</label>
-                <input type="text" id="quantity" name="quantity" value="" required>
-
-                <label for="due_date">Due Date:</label>
-                <input type="date" id="due_date" name="due_date" value="" required>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" required>
 
                 <button type="submit">Save Changes</button>
                 <a class="cancel" href="{{ url_for('test') }}">Cancel</a>

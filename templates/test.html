@@ -29,10 +29,8 @@
         }
         
         .smartphone {
-            width: 375px;
+            width: 400px;
             height: 667px;
-            border: 16px solid #333;
-            border-radius: 36px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             background-color: #fff;
             position: relative;
@@ -89,6 +87,14 @@
             background-color: #0288d1;
         }
         
+        .quantity {
+            background-color: #4caf50;
+        }
+        
+        .quantity:hover {
+            background-color: #388e3c;
+        }
+
         .add {
             background-color: #4caf50;
         }
@@ -99,17 +105,26 @@
 
         .edit {
             background-color: #03a9f4;
+            align-items: right;
         }
 
         .edit:hover {
             background-color: #0288d1;
         }
 
-        .delete {
+        .search {
+            background-color: #03a9f4;
+        }
+
+        .search:hover {
+            background-color: #0288d1;
+        }
+
+        .lend {
             background-color: #ff5722;
         }
 
-        .delete:hover {
+        .lend:hover {
             background-color: #e64a19;
         }
 
@@ -164,7 +179,7 @@
             <div class="search-container">
                 <form method="POST" action="{{ url_for('test') }}">
                     <input type="text" name="search" placeholder="Search books..." value="{{ request.form.get('search', '') }}" />
-                    <button type="submit">Search</button>
+                    <button class="search">Search</button>
                 </form>
             </div>
             <div class="results">
@@ -173,9 +188,9 @@
                     <li>
                         <span class="book-info">{{ book['title'] }} by {{ book.get('author', 'Unknown') }}</span>
                         <div class="buttons">
-                            <button class="add" onclick="window.location.href='{{ url_for('add', title=book['title']) }}'">Add</button>
+                            <button class="quantity" onclick="window.location.href='{{ url_for('quantity', title=book['title']) }}'">Add/Del</button>
+                            <button class="lend" onclick="window.location.href='{{ url_for('lend', title=book['title']) }}'">Lend</button>
                             <button class="edit" onclick="window.location.href='{{ url_for('edit', title=book['title'], author=book.get('author', '')) }}'">Edit</button>
-                            <button class="delete" onclick="window.location.href='{{ url_for('delete', title=book['title']) }}'">Delete</button>
                         </div>
                     </li>
                     {% endfor %}

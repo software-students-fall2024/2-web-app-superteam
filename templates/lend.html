@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <style>
-        /* Similar styles to maintain a consistent look */
+        /* Maintain consistent styles with the original CSS */
         body {
             display: flex;
             justify-content: center;
@@ -33,15 +33,9 @@
             padding: 10px;
             text-align: center;
         }
-        
-        .delete-container {
+
+        form {
             padding: 20px;
-        }
-        
-        .book-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
         }
 
         label {
@@ -49,20 +43,20 @@
             margin-top: 10px;
             font-size: 14px;
         }
-        
-        select {
+
+        input[type="text"], input[type="number"] {
             width: calc(100% - 20px);
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        
+
         button {
             margin-top: 20px;
             padding: 10px;
             width: 100%;
-            background-color: #ff5722;
+            background-color: #4caf50;
             color: white;
             border: none;
             border-radius: 5px;
@@ -70,36 +64,37 @@
         }
         
         button:hover {
-            background-color: #e64a19;
+            background-color: #388e3c;
+        }
+
+        .cancel {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #6200ea;
+            text-decoration: none;
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Book</title>
+    <title>Lend Book</title>
 </head>
 <body>
     <div class="smartphone">
         <div class="screen">
             <header>
-                <h1>Delete Book</h1>
+                <h1>Lend Out {{ title }}</h1>
             </header>
-            <div class="delete-container">
-                <form method="POST" action="{{ url_for('delete', title=title) }}">
-                    <input type="text" id="title" name="title" value="{{ title }}" readonly required><br><br>
-                    
-                    <label for="book-quantity">Quantity:</label>
-                    <select name="book-quantity" id="book-quantity">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    
-                    <button type="submit">Delete Book</button>
+            {% if available_count > 0 %}
+                <form method="POST" action="{{ url_for('lend', title=title) }}">
+                    <label for="due_date">Due Date:</label>
+                    <input type="date" id="due_date" name="due_date" required>
+                    <button type="submit">Lend Out</button>
                 </form>
-                <a href="{{ url_for('test') }}">Cancel</a>
-            </div>
+            {% else %}
+                <p>No available copies to lend out.</p>
+            {% endif %}
+            <a class="cancel" href="{{ url_for('test') }}">Cancel</a>
         </div>
     </div>
 </body>
