@@ -53,23 +53,18 @@ def quantity():
         new_quantity = int(request.form.get('new_quantity'))
         
         if new_quantity == 0:
-            # Delete the book entry if the new quantity is 0
+            
             books_collection.delete_one({'title': title})
             flash(f'Book "{title}" has been removed from the library.', 'info')
         else:
-            # Get current due_dates array
             due_dates = book.get('due_dates', [])
             current_quantity = len(due_dates)
 
             if new_quantity > current_quantity:
-                # Add new available entries (null) to due_dates
                 due_dates.extend([None] * (new_quantity - current_quantity))
             elif new_quantity < current_quantity:
-                # Remove entries starting from available copies
                 due_dates = [date for date in due_dates if date is not None] + [None] * new_quantity
                 due_dates = due_dates[:new_quantity]
-
-            # Update book record with new due_dates array and quantity
             books_collection.update_one(
                 {'title': title},
                 {'$set': {
@@ -124,11 +119,9 @@ def edit():
     author = request.args.get('author')
     
     if request.method == 'POST':
-        # Assuming the edit form has fields for title and author to update
         new_title = request.form.get('title')
         new_author = request.form.get('author')
 
-        # Update the book in the database
         books_collection.update_one(
             {'title': title, 'author': author},
             {'$set': {'title': new_title, 'author': new_author}}
