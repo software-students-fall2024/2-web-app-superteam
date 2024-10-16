@@ -2,73 +2,31 @@
 <html lang="en">
 <head>
     <style>
-        /* Existing styles remain the same */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
 
-        .logout-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: #ff5722;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-button:hover {
-            background-color: #e64a19;
-        }
-        
-        .smartphone {
-            width: 400px;
-            height: 667px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        .container {
+            width: 90%;
+            max-width: 600px;
             background-color: #fff;
-            position: relative;
-        }
-        
-        .screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
-        
+
         header {
             background-color: #6200ea;
             color: white;
             padding: 10px;
             text-align: center;
-        }
-        
-        .search-container {
-            display: flex;
-            padding: 10px;
-        }
-        
-        input[type="text"] {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        
-        button {
-            padding: 10px 15px;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
+            position: relative;
         }
 
         .calendar-button {
@@ -86,45 +44,65 @@
         .calendar-button:hover {
             background-color: #0288d1;
         }
-        
-        .quantity {
-            background-color: #4caf50;
+
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        
-        .quantity:hover {
-            background-color: #388e3c;
+
+        .logout-button:hover {
+            background-color: #e64a19;
+        }
+
+        .search-container {
+            display: flex;
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
         }
 
         .add {
             background-color: #4caf50;
         }
-        
+
         .add:hover {
             background-color: #388e3c;
         }
 
         .edit {
             background-color: #03a9f4;
-            align-items: right;
         }
 
         .edit:hover {
             background-color: #0288d1;
         }
 
-        .search {
-            background-color: #03a9f4;
-        }
-
-        .search:hover {
-            background-color: #0288d1;
-        }
-
-        .lend {
+        .delete {
             background-color: #ff5722;
         }
 
-        .lend:hover {
+        .delete:hover {
             background-color: #e64a19;
         }
 
@@ -133,13 +111,13 @@
             flex-grow: 1;
             overflow-y: auto;
         }
-        
+
         .results ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-        
+
         .results li {
             display: flex;
             justify-content: space-between;
@@ -147,15 +125,15 @@
             padding: 10px;
             border-bottom: 1px solid #ccc;
         }
-        
+
         .results li:last-child {
             border-bottom: none;
         }
-        
+
         .book-info {
             flex: 1;
         }
-        
+
         .buttons {
             display: flex;
         }
@@ -163,41 +141,52 @@
         .buttons button {
             margin-left: 5px;
         }
+
+        .new-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .new-button:hover {
+            background-color: #388e3c;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Page</title>
 </head>
 <body>
-    <div class="smartphone">
-        <div class="screen">
-            <header>
-                <button class="calendar-button" onclick="window.location.href='{{ url_for('calendar') }}'">Calendar</button>
-                <h1>Search Books</h1>
-                <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Logout</button>
-            </header>
-            <div class="search-container">
-                <form method="POST" action="{{ url_for('test') }}">
-                    <input type="text" name="search" placeholder="Search books..." value="{{ request.form.get('search', '') }}" />
-                    <button class="search">Search</button>
-                </form>
-            </div>
-            <div class="results">
-                <ul>
-                    {% for book in books %}
-                    <li>
-                        <span class="book-info">{{ book['title'] }} by {{ book.get('author', 'Unknown') }}</span>
-                        <div class="buttons">
-                            <button class="quantity" onclick="window.location.href='{{ url_for('quantity', title=book['title']) }}'">Add/Del</button>
-                            <button class="lend" onclick="window.location.href='{{ url_for('lend', title=book['title']) }}'">Lend</button>
-                            <button class="edit" onclick="window.location.href='{{ url_for('edit', title=book['title'], author=book.get('author', '')) }}'">Edit</button>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <button class="add" onclick="window.location.href='{{ url_for('new') }}'">New</button>
-
-            </div>
+    <div class="container">
+        <header>
+            <button class="calendar-button" onclick="window.location.href='{{ url_for('calendar') }}'">Calendar</button>
+            <h1>Search Books</h1>
+        </header>
+        <div class="search-container">
+            <form method="POST" action="{{ url_for('test') }}">
+                <input type="text" name="search" placeholder="Search books..." value="{{ request.form.get('search', '') }}" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="results">
+            <ul>
+                {% for book in books %}
+                <li>
+                    <span class="book-info">{{ book['title'] }} by {{ book.get('author', 'Unknown') }}</span>
+                    <div class="buttons">
+                        <button class="add" onclick="window.location.href='{{ url_for('quantity', title=book['title']) }}'">Update Quantity</button>
+                        <button class="edit" onclick="window.location.href='{{ url_for('edit', title=book['title'], author=book.get('author', '')) }}'">Edit</button>
+                        <button class="delete" onclick="window.location.href='{{ url_for('lend', title=book['title']) }}'">Lend</button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <button class="new-button" onclick="window.location.href='{{ url_for('new') }}'">New Book</button>
         </div>
     </div>
 </body>

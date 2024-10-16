@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <style>
-        /* Similar styles to keep a consistent design */
+
         body {
             display: flex;
             justify-content: center;
@@ -85,9 +85,9 @@
             </header>
             <div class="add-container">
                 <form method="POST" action="{{ url_for('add' , title=title)}}">
-                    <!-- Display book title -->
+                   
                     <input type="label" id="title" name="title" value="{{ title }}" readonly required><br><br>
-                    <!-- Quantity selection -->
+             
                     <label for="book-quantity">Quantity:</label>
                     <select name="book-quantity" id="book-quantity">
                         <option value="1">1</option>
@@ -97,7 +97,7 @@
                         <option value="5">5</option>
                     </select>
                     
-                    <!-- Submit button -->
+                   
                     <button type="submit">Add Book</button>
                 </form>
                 <a href="{{ url_for('test') }}">Cancel</a>

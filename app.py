@@ -16,20 +16,9 @@ client = MongoClient(mongo_uri)
 db = client['library'] 
 books_collection = db['books']
 
-@app.route('/', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        
-        # Using "user" and "password" as the login credentials
-        if username == "user" and password == "password":
-            return redirect(url_for('test'))
-        else:
-            error = 'Invalid username or password'
-
-    return render_template('login.html', error=error)
+@app.route('/')
+def home():
+    return redirect(url_for('test'))
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
@@ -43,7 +32,6 @@ def test():
         print("All books:", books)
     return render_template('test.html', books=books)
 
-
 @app.route('/quantity', methods=['GET', 'POST'])
 def quantity():
     title = request.args.get('title')
@@ -53,7 +41,6 @@ def quantity():
         new_quantity = int(request.form.get('new_quantity'))
         
         if new_quantity == 0:
-            
             books_collection.delete_one({'title': title})
             flash(f'Book "{title}" has been removed from the library.', 'info')
         else:
@@ -65,6 +52,7 @@ def quantity():
             elif new_quantity < current_quantity:
                 due_dates = [date for date in due_dates if date is not None] + [None] * new_quantity
                 due_dates = due_dates[:new_quantity]
+
             books_collection.update_one(
                 {'title': title},
                 {'$set': {
@@ -78,7 +66,6 @@ def quantity():
 
     return render_template('quantity.html', title=title, quantity=book['quantity'])
 
-# Replacing the old delete page with a new lending page
 @app.route('/lend', methods=['GET', 'POST'])
 def lend():
     title = request.args.get('title')
@@ -86,7 +73,6 @@ def lend():
 
     if request.method == 'POST':
         due_date = request.form.get('due_date')
-        # Find the first available copy (None) in due_dates and assign a due date
         for i in range(len(book['due_dates'])):
             if book['due_dates'][i] is None:
                 book['due_dates'][i] = due_date
@@ -101,7 +87,6 @@ def lend():
 
     available_count = sum(1 for due_date in book['due_dates'] if due_date is None)
     return render_template('lend.html', title=title, available_count=available_count)
-
 
 @app.route('/calendar')
 def calendar():
@@ -132,10 +117,8 @@ def edit():
     return render_template('edit.html', title=title, author=author)
 
 @app.route('/new', methods=['GET', 'POST'])
-@app.route('/new', methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
-
         title = request.form.get('title')
         author = request.form.get('author')
         quantity = int(request.form.get('quantity'))

@@ -3,31 +3,25 @@
 <head>
     <title>Edit Book</title>
     <style>
-        /* Maintain consistent styles with the original CSS */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
         
-        .smartphone {
-            width: 400px;
-            height: 667px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        .container {
+            width: 90%;
+            max-width: 500px;
             background-color: #fff;
-            position: relative;
-        }
-        
-        .screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
-        
+
         header {
             background-color: #6200ea;
             color: white;
@@ -80,22 +74,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="smartphone">
-        <div class="screen">
-            <header>
-                <h1>Edit Book</h1>
-            </header>
-            <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="title" value="{{ title }}" required>
+    <div class="container">
+        <header>
+            <h1>Edit Book</h1>
+        </header>
+        <form method="POST" action="{{ url_for('edit', title=title, author=author) }}">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="{{ title }}" required>
 
-                <label for="author">Author:</label>
-                <input type="text" id="author" name="author" value="{{ author }}" required>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" value="{{ author }}" required>
 
-                <button type="submit">Save Changes</button>
-                <a class="cancel" href="{{ url_for('test') }}">Cancel</a>
-            </form>
-        </div>
+            <button type="submit">Save Changes</button>
+            <a class="cancel" href="{{ url_for('test') }}">Cancel</a>
+        </form>
     </div>
 </body>
 </html>

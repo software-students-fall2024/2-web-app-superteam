@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
 
-        .smartphone {
-            width: 400px;
-            height: 667px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        .container {
+            width: 90%;
+            max-width: 500px;
             background-color: #fff;
-            position: relative;
-        }
-
-        .screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
 
@@ -49,22 +43,6 @@
 
         .back-button:hover {
             background-color: #0288d1;
-        }
-
-        .logout-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: #ff5722;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-button:hover {
-            background-color: #e64a19;
         }
 
         .calendar-container {
@@ -93,32 +71,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
 </head>
-
 <body>
-    <div class="smartphone">
-        <div class="screen">
-            <header>
-                <button class="back-button" onclick="window.location.href='{{ url_for('test') }}'">Back</button>
-                <button class="logout-button" onclick="window.location.href='{{ url_for('login') }}'">Logout</button>
-                <h1>Due Dates</h1>
-            </header>
-            <div class="calendar-container">
-                {% for book in books %}
-                <div class="calendar-item">
-                    <span class="book-title">{{ book['title'] }}</span>
-                    <ul>
-                        {% for due_date in book['due_dates'] %}
-                        {% if due_date %}
-                        <li><span class="due-date">Due: {{ due_date }}</span></li>
-                        {% endif %}
-                        {% endfor %}
-                        <li><span class="due-date">{{ book['available_count'] }} available</span></li>
-                    </ul>
-                </div>
-                {% endfor %}
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="window.location.href='{{ url_for('test') }}'">Back</button>
+            <h1>Due Dates</h1>
+        </header>
+        <div class="calendar-container">
+            {% for book in books %}
+            <div class="calendar-item">
+                <span class="book-title">{{ book['title'] }}</span>
+                <ul>
+                    {% for due_date in book['due_dates'] %}
+                    {% if due_date %}
+                    <li><span class="due-date">Due: {{ due_date }}</span></li>
+                    {% endif %}
+                    {% endfor %}
+                    <li><span class="due-date">{{ book['available_count'] }} available</span></li>
+                </ul>
             </div>
+            {% endfor %}
         </div>
     </div>
 </body>
-
 </html>
